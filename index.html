@@ -561,6 +561,43 @@
     border-bottom:1px solid rgba(199,154,75,0.4);
     padding-bottom:3px;
   }
+  .como-chegar{
+    margin-top:2.4rem;
+    padding-top:2rem;
+    border-top:1px solid rgba(228,211,184,0.16);
+  }
+  .como-chegar h3{
+    font-size:1.05rem;
+    color:#F3E9D6;
+    margin-bottom:1rem;
+  }
+  .rota-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    counter-reset:rota;
+  }
+  .rota-list li{
+    counter-increment:rota;
+    display:flex;
+    gap:0.9rem;
+    font-size:0.92rem;
+    opacity:0.85;
+    padding:0.6rem 0;
+  }
+  .rota-list li::before{
+    content:counter(rota);
+    flex-shrink:0;
+    width:22px; height:22px;
+    border-radius:50%;
+    border:1px solid rgba(199,154,75,0.5);
+    color:var(--bronze-light);
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
   .relevo{
     aspect-ratio:1;
     position:relative;
@@ -1006,8 +1043,10 @@
   "description": "Três cabanas A-frame erguidas sobre a rocha, em Serra Negra, Bezerros, no Agreste de Pernambuco. Uma escapada íntima para casais, com vista para o vale e o açude.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Condomínio Reserva Serra Negra, Zona Rural",
     "addressLocality": "Bezerros",
     "addressRegion": "PE",
+    "postalCode": "55660-000",
     "addressCountry": "BR"
   },
   "image": "logo-pedra-do-ceu.png",
@@ -1036,7 +1075,7 @@
       </svg>
       Pedra do Céu
     </div>
-    <a class="cta-small" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Lista de espera</a>
+    <a class="cta-small" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Lista de espera</a>
   </nav>
 
   <div class="hero-main">
@@ -1046,7 +1085,7 @@
       <p class="tagline">Três cabanas suspensas sobre a rocha, entre o silêncio do vale e a vastidão do céu — uma escapada só para dois.</p>
       <div class="hero-badge"><span class="pulse"></span> Abertura em dezembro de 2026</div>
       <div class="cta-row">
-        <a class="btn btn-primary" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Garantir acesso antecipado</a>
+        <a class="btn btn-primary" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Garantir acesso antecipado</a>
         <a class="btn btn-ghost" href="https://instagram.com/pedradoceucabanas" target="_blank" rel="noopener">@pedradoceucabanas</a>
       </div>
     </div>
@@ -1106,7 +1145,7 @@
           <span class="preco">A partir de R$ <!-- VALOR_VALE -->[a definir]<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
-          <a class="mini-btn" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20Vale%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
+          <a class="mini-btn" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20Vale%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
         </div>
       </div>
 
@@ -1123,7 +1162,7 @@
           <span class="preco">A partir de R$ <!-- VALOR_NUVEM -->[a definir]<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
-          <a class="mini-btn" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20Nuvem%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
+          <a class="mini-btn" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20Nuvem%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
         </div>
       </div>
 
@@ -1139,7 +1178,7 @@
           <span class="preco">A partir de R$ <!-- VALOR_CEU -->[a definir]<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
-          <a class="mini-btn" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20C%C3%A9u%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
+          <a class="mini-btn" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20consultar%20disponibilidade%20e%20valores%20da%20Cabana%20C%C3%A9u%20%E2%80%94%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Consultar disponibilidade</a>
         </div>
       </div>
     </div>
@@ -1266,7 +1305,17 @@
           <li><span class="dot"></span>Três cabanas A-frame, privativas, elevadas sobre a rocha</li>
           <li><span class="dot"></span>Experiência voltada para casais</li>
         </ul>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Serra+Negra+Bezerros+Pernambuco" target="_blank" rel="noopener">Ver no mapa →</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Condom%C3%ADnio+Reserva+Serra+Negra+Bezerros+PE" target="_blank" rel="noopener">Ver no mapa →</a>
+
+        <div class="como-chegar" data-reveal>
+          <h3>Como chegar</h3>
+          <ol class="rota-list">
+            <li>Saindo do Recife, pegue a BR-232 sentido Caruaru.</li>
+            <li>Siga até a saída para Bezerros e continue pelas placas indicativas de Serra Negra.</li>
+            <li>Na subida da serra, entre no Condomínio Reserva Serra Negra — zona rural de Bezerros, CEP 55660-000.</li>
+            <li>Chegando à portaria, é só chamar no WhatsApp que a gente indica o caminho até a cabana.</li>
+          </ol>
+        </div>
       </div>
       <div class="relevo" data-reveal aria-hidden="true">
         <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1478,7 +1527,7 @@
     <h2 data-reveal>A abertura está marcada para dezembro de 2026</h2>
     <p data-reveal>As três cabanas estão sendo erguidas agora, pedra por pedra. Quem entrar na lista de espera é avisado em primeira mão quando as reservas abrirem — e tem prioridade nas primeiras datas.</p>
     <div class="cta-row" data-reveal>
-      <a class="btn btn-primary" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Entrar na lista de espera</a>
+      <a class="btn btn-primary" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Entrar na lista de espera</a>
     </div>
   </div>
 </section>
@@ -1494,20 +1543,21 @@
       </svg>
       <h2>Fique por dentro da abertura</h2>
       <div class="cta-row">
-        <a class="btn btn-primary" href="https://wa.me/5581998572000?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Entrar na lista de espera</a>
+        <a class="btn btn-primary" href="https://wa.me/message/SNI5FY6M6YBKM1?text=Ol%C3%A1%2C%20quero%20entrar%20na%20lista%20de%20acesso%20antecipado%20da%20Pedra%20do%20C%C3%A9u%20Cabanas" target="_blank" rel="noopener">Entrar na lista de espera</a>
       </div>
     </div>
 
     <div class="contato-grid">
       <div class="col" data-reveal>
         <h4>Fale com a gente</h4>
-        <a href="https://wa.me/5581998572000" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/message/SNI5FY6M6YBKM1" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://instagram.com/pedradoceucabanas" target="_blank" rel="noopener">@pedradoceucabanas</a>
       </div>
       <div class="col" data-reveal>
         <h4>Onde estamos</h4>
-        <p>Serra Negra</p>
-        <p>Pernambuco, Brasil</p>
+        <p>Condomínio Reserva Serra Negra</p>
+        <p>Zona rural, Bezerros — PE</p>
+        <p>CEP 55660-000</p>
       </div>
     </div>
 
