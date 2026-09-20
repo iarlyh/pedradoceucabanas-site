@@ -425,6 +425,9 @@
     opacity:0.55;
     max-width:56ch;
   }
+  .datas-nota + .datas-nota{
+    margin-top:0.5rem;
+  }
   .cabana-row .elev{
     text-align:right;
     font-family:'Cormorant Garamond', serif;
@@ -465,8 +468,17 @@
   .adicionais .section-head p{ color:var(--preto-deep); opacity:0.7; }
   .add-cards{
     display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.6rem;
+  }
+  .parceiros-cards{
+    display:grid;
     grid-template-columns:repeat(3, 1fr);
     gap:1.6rem;
+  }
+  .parceiros .add-card{ color:var(--preto-deep); }
+  @media (max-width:640px){
+    .parceiros-cards{ grid-template-columns:1fr; }
   }
   .add-card{
     background:var(--bege);
@@ -762,6 +774,30 @@
     background:var(--ouro);
     margin-top:0.55rem;
     flex-shrink:0;
+  }
+  .ocasioes-grid{
+    list-style:none;
+    margin:2.4rem 0 0;
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:0.9rem 2rem;
+  }
+  .ocasioes-grid li{
+    display:flex;
+    gap:0.8rem;
+    font-size:0.98rem;
+    opacity:0.9;
+  }
+  .ocasioes-grid li .dot{
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--ouro);
+    margin-top:0.6rem;
+    flex-shrink:0;
+  }
+  @media (max-width:640px){
+    .ocasioes-grid{ grid-template-columns:1fr; }
   }
   .convivio-art{
     aspect-ratio:1;
@@ -1175,7 +1211,7 @@
           <h3>Cabana Vale</h3>
           <span class="posicao">A mais baixa das três</span>
           <p class="desc">A mais próxima do verde — varanda voltada pro vale, aconchego logo no primeiro degrau da experiência.</p>
-          <span class="preco">A partir de R$ <!-- VALOR_VALE -->[a definir]<span class="unidade">/ noite</span></span>
+          <span class="preco">A partir de R$ <!-- VALOR_VALE -->800<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
           <a class="mini-btn" href="disponibilidade.html?cabana=vale">Consultar disponibilidade</a>
@@ -1192,7 +1228,7 @@
           <h3>Cabana Nuvem</h3>
           <span class="posicao">Intermediária</span>
           <p class="desc">Bem no meio do caminho entre o vale e o céu — aquela sensação de estar flutuando entre as nuvens, a queridinha das fotos no mirante.</p>
-          <span class="preco">A partir de R$ <!-- VALOR_NUVEM -->[a definir]<span class="unidade">/ noite</span></span>
+          <span class="preco">A partir de R$ <!-- VALOR_NUVEM -->900<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
           <a class="mini-btn" href="disponibilidade.html?cabana=nuvem">Consultar disponibilidade</a>
@@ -1208,7 +1244,7 @@
           <h3>Cabana Céu</h3>
           <span class="posicao">A mais alta das três</span>
           <p class="desc">A mais alta das três — e a vista mais ampla que existe por aqui. Se o nome Pedra do Céu tivesse um endereço, seria este.</p>
-          <span class="preco">A partir de R$ <!-- VALOR_CEU -->[a definir]<span class="unidade">/ noite</span></span>
+          <span class="preco">A partir de R$ <!-- VALOR_CEU -->1.000<span class="unidade">/ noite</span></span>
         </div>
         <div class="cta-row-mini">
           <a class="mini-btn" href="disponibilidade.html?cabana=ceu">Consultar disponibilidade</a>
@@ -1216,7 +1252,8 @@
       </div>
     </div>
 
-    <p class="datas-nota">Valores fixos durante todo o ano, exceto em datas comemorativas (Réveillon, Carnaval, São João, Natal e feriados prolongados), quando podem sofrer reajuste sob consulta.</p>
+    <p class="datas-nota">Diárias a partir de domingo a quinta (1 diária), exceto em dias ou vésperas de feriados e datas comemorativas (Réveillon, Carnaval, São João, Natal e feriados prolongados), quando podem sofrer reajuste sob consulta.</p>
+    <p class="datas-nota">Para ensaios fotográficos e marketing comercial, temos valores especiais — consulte-nos sobre dias e horários.</p>
   </div>
 </section>
 
@@ -1280,8 +1317,8 @@
       <div class="bom-saber-item" data-reveal>
         <svg class="icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 4c-4 4-6 8-6 12a6 6 0 0012 0c0-4-2-8-6-12z" stroke="currentColor" stroke-width="1.5"/><path d="M11 27h10M16 22v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         <div>
-          <h4>Pets são bem-vindos</h4>
-          <p>Com um cuidado importante: a cabana é elevada sobre a rocha, e existe risco real de queda. Atenção redobrada com os bichinhos.</p>
+          <h4>Amamos pets, mas não recomendamos trazê-los</h4>
+          <p>A cabana é elevada sobre a rocha, e existe risco real de queda — por segurança dos bichinhos, recomendamos não levá-los na estadia.</p>
         </div>
       </div>
     </div>
@@ -1329,8 +1366,8 @@
         <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M20 32s-11-6.8-11-15a7 7 0 0114-1 7 7 0 0114 1c0 8.2-11 15-11 15z" stroke="currentColor" stroke-width="1.6"/>
         </svg>
-        <h3>Pedido de namoro ou casamento</h3>
-        <p>Decoração romântica na cabana, com arranjos e detalhes para o momento do pedido.</p>
+        <h3>Pacote Romântico</h3>
+        <p>Decoração romântica na cabana, com arranjos e detalhes para tornar o momento a dois inesquecível.</p>
         <span class="tag">Sob consulta</span>
       </div>
       <div class="add-card" data-reveal>
@@ -1339,8 +1376,8 @@
           <path d="M10 34V20a10 10 0 0120 0v14" stroke="currentColor" stroke-width="1.6"/>
           <path d="M7 34h26" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
-        <h3>Aniversário e bodas</h3>
-        <p>Celebrações com identidade — decoração, doces e detalhes combinados com antecedência.</p>
+        <h3>Pacote Personalizado</h3>
+        <p>Bodas, chá de revelação, ensaios fotográficos, aniversários, pedidos de namoro/casamento e outras ocasiões especiais — montado com você.</p>
         <span class="tag">Sob consulta</span>
       </div>
       <div class="add-card" data-reveal>
@@ -1349,11 +1386,43 @@
           <path d="M7 20a13 13 0 0126 0" stroke="currentColor" stroke-width="1.6"/>
           <path d="M14 20v-2M20 20v-3M26 20v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
-        <h3>Cesta de piquenique</h3>
-        <p>Piquenique preparado para curtir o mirante — ideal para o fim de tarde sobre o vale.</p>
+        <h3>Pic Nic</h3>
+        <p>Cesta de piquenique preparada para curtir o mirante — ideal para o fim de tarde sobre o vale.</p>
+        <span class="tag">Sob consulta</span>
+      </div>
+      <div class="add-card" data-reveal>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 14l14-8 14 8-14 8-14-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M6 14v13l14 8 14-8V14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M20 22v13" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <h3>Caixa Box (frios)</h3>
+        <p>Seleção de frios e queijos, pronta para acompanhar o entardecer na cabana.</p>
         <span class="tag">Sob consulta</span>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="ocasioes">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow" style="color:var(--ouro);">Perfeita para celebrar</p>
+      <h2>Um cenário pronto para os seus grandes momentos</h2>
+      <p>A vista, a luz e o silêncio da Pedra do Céu tornam o lugar ideal para registrar e celebrar ocasiões especiais.</p>
+    </div>
+    <ul class="ocasioes-grid" data-reveal>
+      <li><span class="dot"></span>Chá de revelação</li>
+      <li><span class="dot"></span>Ensaios fotográficos</li>
+      <li><span class="dot"></span>Marketing comercial</li>
+      <li><span class="dot"></span>Bodas</li>
+      <li><span class="dot"></span>Pedidos de namoro ou casamento</li>
+      <li><span class="dot"></span>Aniversários — de namoro, de casamento ou individual</li>
+      <li><span class="dot"></span>Pré-wedding</li>
+      <li><span class="dot"></span>Casamentos</li>
+      <li><span class="dot"></span>Casais de amigos</li>
+      <li><span class="dot"></span>Família completa</li>
+    </ul>
   </div>
 </section>
 
@@ -1581,6 +1650,46 @@
         <span class="stars">★★★★★</span>
         <p>"Cada estadia vira uma história — em breve, contada aqui."</p>
         <span class="autor">Depoimento em breve</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="parceiros">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow" style="color:var(--ouro);">Parceiros</p>
+      <h2>Profissionais que também fazem parte da experiência</h2>
+      <p>Para quem quer ir além da estadia, contamos com uma rede de parceiros de confiança para tornar o momento ainda mais especial.</p>
+    </div>
+    <div class="parceiros-cards">
+      <div class="add-card" data-reveal>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="5" y="12" width="30" height="21" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 12l3-5h6l3 5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="20" cy="23" r="7" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <h3>Fotógrafo</h3>
+        <p>Registro profissional para ensaios, celebrações e pedidos especiais.</p>
+        <span class="tag">Parceiro em breve</span>
+      </div>
+      <div class="add-card" data-reveal>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13 33l3-9 12-12a3 3 0 014 4L20 28l-9 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M25 9l4 4" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <h3>Maquiagem</h3>
+        <p>Produção de beleza para casamentos, ensaios e datas comemorativas.</p>
+        <span class="tag">Parceiro em breve</span>
+      </div>
+      <div class="add-card" data-reveal>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="14" r="5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M20 19v14M13 27c3-2 11-2 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <h3>Decoração</h3>
+        <p>Cenários personalizados para cada tipo de celebração.</p>
+        <span class="tag">Parceiro em breve</span>
       </div>
     </div>
   </div>
