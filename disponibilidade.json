@@ -1,0 +1,8 @@
+{
+  "generatedAt": null,
+  "cabins": {
+    "vale": { "name": "Cabana Vale", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} },
+    "nuvem": { "name": "Cabana Nuvem", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} },
+    "ceu": { "name": "Cabana Céu", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} }
+  }
+}
