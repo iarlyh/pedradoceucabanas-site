@@ -1,8 +1,48 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-09-22T11:04:05.048Z",
   "cabins": {
-    "vale": { "name": "Cabana Vale", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} },
-    "nuvem": { "name": "Cabana Nuvem", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} },
-    "ceu": { "name": "Cabana Céu", "weekdayPrice": 0, "weekendPrice": 0, "specialPeriods": [], "days": {} }
-  }
+    "vale": {
+      "name": "Cabana Vale",
+      "weekdayPrice": 800,
+      "weekendPrice": 1800,
+      "specialPeriods": [],
+      "days": {}
+    },
+    "nuvem": {
+      "name": "Cabana Nuvem",
+      "weekdayPrice": 900,
+      "weekendPrice": 2000,
+      "specialPeriods": [],
+      "days": {}
+    },
+    "ceu": {
+      "name": "Cabana Céu",
+      "weekdayPrice": 1000,
+      "weekendPrice": 2200,
+      "specialPeriods": [],
+      "days": {}
+    }
+  },
+  "addons": [
+    {
+      "id": "picnic",
+      "label": "Cesta de Piquenique",
+      "price": 0
+    },
+    {
+      "id": "romantico",
+      "label": "Pacote Romântico",
+      "price": 0
+    },
+    {
+      "id": "personalizado",
+      "label": "Pacote Personalizado",
+      "price": 0
+    },
+    {
+      "id": "box",
+      "label": "Caixa Box (frios)",
+      "price": 0
+    }
+  ]
 }
