@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solicitar Reserva — Pedra do Céu Cabanas</title>
+<meta name="description" content="Simule o valor da sua estadia nas cabanas Vale, Nuvem e Céu e solicite sua reserva — confirmamos com você pelo WhatsApp.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --preto:#1A1A18;
+  --preto-deep:#0F0F0D;
+  --ouro:#C49A50;
+  --ouro-escuro:#9A7338;
+  --bege:#F5F0E8;
+  --areia:#E8DFD0;
+  --offwhite:#FDFAF5;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin:0; padding:0;
+  background: var(--offwhite);
+  color: var(--preto);
+  font-family:'Jost', sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3 { font-family:'Cormorant Garamond', serif; font-weight:500; margin:0; }
+a { color:inherit; }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px 18px 60px; }
+
+header.top {
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding-bottom:18px; margin-bottom: 22px;
+  border-bottom: 1px solid var(--areia);
+}
+header.top img { width:40px; height:40px; }
+header.top .titles { flex:1; min-width:200px; }
+header.top .titles h1 { font-size:22px; color:var(--preto); }
+header.top .titles p { margin:2px 0 0; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--ouro-escuro); }
+header.top .back-link { font-size:12px; color:var(--ouro-escuro); text-decoration:none; white-space:nowrap; }
+header.top .back-link:hover { text-decoration:underline; }
+
+.intro { font-size:14.5px; line-height:1.75; margin-bottom:22px; max-width:60ch; }
+
+.tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.tab-btn {
+  font-family:'Jost', sans-serif;
+  font-size:13px; letter-spacing:0.5px;
+  padding:10px 18px;
+  border-radius:30px;
+  border:1px solid var(--areia);
+  background: var(--bege);
+  color: var(--preto);
+  cursor:pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.tab-btn.active { background: var(--preto); color: var(--offwhite); border-color: var(--preto); }
+.tab-btn:not(.active):hover { border-color: var(--ouro); }
+
+.card { background: var(--bege); border-radius:14px; padding:20px 22px; margin-bottom:18px; }
+.card h3 { font-size:18px; margin-bottom:14px; }
+.step-label { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--ouro-escuro); margin-bottom:4px; }
+
+.field { margin-bottom:14px; }
+.field:last-child { margin-bottom:0; }
+.field label { display:block; font-size:11.5px; letter-spacing:.4px; text-transform:uppercase; color:var(--ouro-escuro); margin-bottom:6px; }
+.field input[type=date], .field input[type=text], .field input[type=tel] {
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--areia);
+  background:var(--offwhite); font-family:'Jost', sans-serif; font-size:14.5px; color:var(--preto);
+}
+.field-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:520px){ .field-row-2 { grid-template-columns:1fr; } }
+
+.dates-msg { font-size:12.5px; line-height:1.6; margin-top:10px; padding:10px 12px; border-radius:8px; }
+.dates-msg.ok { background: rgba(196,154,80,0.12); color:var(--ouro-escuro); border:1px solid var(--ouro); }
+.dates-msg.warn { background:#faeaea; color:#a8452f; border:1px solid #d98c78; }
+.dates-msg.empty { display:none; }
+
+.addon-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--areia); }
+.addon-item:last-child { border-bottom:none; }
+.addon-item input[type=checkbox] { width:18px; height:18px; margin-top:2px; accent-color:var(--ouro-escuro); cursor:pointer; flex-shrink:0; }
+.addon-item label { flex:1; cursor:pointer; }
+.addon-item .addon-name { font-size:14px; display:block; }
+.addon-item .addon-price { font-size:12px; color:var(--ouro-escuro); }
+.addon-item .addon-price.sob-consulta { font-style:italic; opacity:.85; }
+
+.total-card { background: var(--preto); color: var(--offwhite); }
+.total-row { display:flex; justify-content:space-between; align-items:baseline; font-size:13.5px; padding:5px 0; }
+.total-row.grand { border-top:1px solid rgba(255,255,255,0.2); margin-top:8px; padding-top:14px; font-size:16px; }
+.total-row.grand b { font-family:'Cormorant Garamond', serif; font-size:26px; color:var(--ouro); font-weight:600; }
+.total-note { font-size:11.5px; opacity:.75; margin-top:10px; line-height:1.6; }
+
+.btn-cta {
+  width:100%; display:block; text-align:center;
+  background: var(--ouro); color: var(--preto);
+  font-family:'Jost', sans-serif; font-weight:500; font-size:15px; letter-spacing:0.5px;
+  padding:16px 24px; border-radius:40px; border:none; cursor:pointer;
+  transition: filter .15s, opacity .15s;
+  text-decoration:none;
+}
+.btn-cta:hover { filter:brightness(1.08); }
+.btn-cta:disabled, .btn-cta.disabled { opacity:.45; cursor:not-allowed; filter:none; }
+
+.fine-print { font-size:11.5px; color:var(--ouro-escuro); text-align:center; margin-top:14px; line-height:1.6; }
+
+footer.foot {
+  margin-top:30px; padding-top:18px; border-top:1px solid var(--areia);
+  font-size:11.5px; color:var(--ouro-escuro); text-align:center;
+}
+
+.loading { text-align:center; padding:40px 0; color:var(--ouro-escuro); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <img src="favicon.png" alt="">
+    <div class="titles">
+      <h1>Solicitar Reserva</h1>
+      <p>Pedra do Céu Cabanas</p>
+    </div>
+    <a class="back-link" href="index.html">← Voltar ao site</a>
+  </header>
+
+  <p class="intro">Escolha a cabana, as datas e os adicionais que quiser — o valor estimado é calculado na hora. Ao final, você envia o pedido pelo WhatsApp e a gente confirma a disponibilidade e fecha os detalhes com você.</p>
+
+  <div id="loadingMsg" class="loading">Carregando...</div>
+
+  <div id="content" style="display:none;">
+    <div class="tabs" id="tabs"></div>
+
+    <div class="card">
+      <h3>1. Datas da estadia</h3>
+      <div class="field-row-2">
+        <div class="field">
+          <label>Check-in</label>
+          <input type="date" id="checkinInput">
+        </div>
+        <div class="field">
+          <label>Check-out</label>
+          <input type="date" id="checkoutInput">
+        </div>
+      </div>
+      <div id="datesMsg" class="dates-msg empty"></div>
+    </div>
+
+    <div class="card" id="addonsCard" style="display:none;">
+      <h3>2. Adicionais (opcional)</h3>
+      <div id="addonsList"></div>
+    </div>
+
+    <div class="card total-card" id="totalCard" style="display:none;">
+      <div id="totalBreakdown"></div>
+    </div>
+
+    <div class="card">
+      <h3 id="guestDataTitle">3. Seus dados</h3>
+      <div class="field">
+        <label>Nome completo</label>
+        <input type="text" id="guestNameInput" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label>WhatsApp (com DDD)</label>
+        <input type="tel" id="guestContactInput" placeholder="81999998888">
+      </div>
+    </div>
+
+    <button class="btn-cta" id="submitBtn" disabled>Escolha as datas para continuar</button>
+    <p class="fine-print">O valor mostrado aqui é uma simulação e pode ser ajustado na confirmação. Nada é cobrado neste momento — o pagamento é combinado diretamente com a gente pelo WhatsApp.</p>
+  </div>
+
+  <footer class="foot" id="footNote"></footer>
+
+</div>
+
+<script>
+const CABINS = [
+  { id:'vale',  name:'Cabana Vale'  },
+  { id:'nuvem', name:'Cabana Nuvem' },
+  { id:'ceu',   name:'Cabana Céu'   },
+];
+const WHATSAPP_LINK = 'https://wa.me/message/SNI5FY6M6YBKM1';
+
+let data = null;
+let activeCabin = 'vale';
+let selectedAddonIds = [];
+const todayStr = fmtDate(new Date());
+
+function fmtDate(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function parseDateStr(dateStr){
+  const [y,m,d] = dateStr.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+function addDaysToStr(dateStr, n){
+  const d = parseDateStr(dateStr);
+  d.setDate(d.getDate()+n);
+  return fmtDate(d);
+}
+function formatDateBR(dateStr){
+  const [y,m,d] = dateStr.split('-');
+  return `${d}/${m}/${y}`;
+}
+function isWeekendDay(dateObj){
+  const wd = dateObj.getDay();
+  return wd === 5 || wd === 6;
+}
+function findSpecialPeriod(cabinId, dateStr){
+  const list = (data.cabins[cabinId] && data.cabins[cabinId].specialPeriods) || [];
+  return list.find(p => dateStr >= p.from && dateStr <= p.to) || null;
+}
+function formatMoney(n){
+  return 'R$ ' + Number(n||0).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function waLink(message){
+  return WHATSAPP_LINK + '?text=' + encodeURIComponent(message);
+}
+
+// Sexta e sábado são sempre vendidos juntos, como pacote de 2 noites — se o
+// período informado cobrir só uma das duas, estende automaticamente para
+// incluir a outra (mesma regra usada no calendário de reservas).
+function pairFridaySaturday(checkin, checkout){
+  let ci = checkin, co = checkout;
+  if (parseDateStr(ci).getDay() === 6){ ci = addDaysToStr(ci, -1); }
+  if (parseDateStr(addDaysToStr(co, -1)).getDay() === 5){ co = addDaysToStr(co, 1); }
+  return { checkin: ci, checkout: co };
+}
+
+function getPriceForDate(cabinId, dateStr){
+  const cabinData = data.cabins[cabinId];
+  const entry = (cabinData.days || {})[dateStr];
+  if (entry && entry.price != null) return entry.price;
+  const special = findSpecialPeriod(cabinId, dateStr);
+  if (special) return special.price;
+  const weekend = isWeekendDay(parseDateStr(dateStr));
+  return weekend ? (cabinData.weekendPrice || 0) : (cabinData.weekdayPrice || 0);
+}
+
+function isDateUnavailable(cabinId, dateStr){
+  const cabinData = data.cabins[cabinId];
+  const entry = (cabinData.days || {})[dateStr];
+  return !!(entry && (entry.status === 'reservado' || entry.status === 'bloqueado'));
+}
+
+function loadAddons(){
+  const el = document.getElementById('addonsList');
+  const addons = (data && data.addons) || [];
+  if (addons.length === 0){
+    document.getElementById('addonsCard').style.display = 'none';
+    return;
+  }
+  document.getElementById('addonsCard').style.display = '';
+  el.innerHTML = addons.map(a => `
+    <div class="addon-item">
+      <input type="checkbox" id="addon-${a.id}" data-id="${a.id}">
+      <label for="addon-${a.id}">
+        <span class="addon-name">${a.label}</span>
+        <span class="addon-price ${a.price ? '' : 'sob-consulta'}">${a.price ? formatMoney(a.price) : 'Sob consulta — combine pelo WhatsApp'}</span>
+      </label>
+    </div>
+  `).join('');
+  addons.forEach(a=>{
+    document.getElementById('addon-'+a.id).addEventListener('change', (e)=>{
+      if (e.target.checked) selectedAddonIds.push(a.id);
+      else selectedAddonIds = selectedAddonIds.filter(id=>id!==a.id);
+      recalculate();
+    });
+  });
+}
+
+function recalculate(){
+  const checkinRaw = document.getElementById('checkinInput').value;
+  const checkoutRaw = document.getElementById('checkoutInput').value;
+  const msgEl = document.getElementById('datesMsg');
+  const totalCard = document.getElementById('totalCard');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (!checkinRaw || !checkoutRaw){
+    msgEl.className = 'dates-msg empty';
+    totalCard.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Escolha as datas para continuar';
+    return null;
+  }
+
+  let { checkin, checkout } = pairFridaySaturday(checkinRaw, checkoutRaw);
+  const extended = (checkin !== checkinRaw || checkout !== checkoutRaw);
+
+  if (checkout <= checkin){
+    msgEl.className = 'dates-msg warn';
+    msgEl.textContent = 'A data de check-out precisa ser depois do check-in.';
+    totalCard.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Corrija as datas para continuar';
+    return null;
+  }
+
+  // Verifica disponibilidade dia a dia
+  const unavailable = [];
+  let day = checkin;
+  let nightsTotal = 0;
+  while (day < checkout){
+    if (isDateUnavailable(activeCabin, day)) unavailable.push(day);
+    nightsTotal += getPriceForDate(activeCabin, day);
+    day = addDaysToStr(day, 1);
+  }
+
+  if (unavailable.length > 0){
+    msgEl.className = 'dates-msg warn';
+    msgEl.textContent = 'Infelizmente ' + (unavailable.length===1 ? 'a data ' : 'as datas ') +
+      unavailable.map(formatDateBR).join(', ') + ' já não está(ão) disponível(is) nesta cabana. Tente outro período.';
+    totalCard.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Escolha datas disponíveis';
+    return null;
+  }
+
+  const nights = Math.round((parseDateStr(checkout) - parseDateStr(checkin)) / 86400000);
+
+  if (extended){
+    msgEl.className = 'dates-msg ok';
+    msgEl.textContent = 'Sextas e sábados são reservados sempre em conjunto — ajustamos automaticamente o período para ' +
+      formatDateBR(checkin) + ' a ' + formatDateBR(checkout) + ' (' + nights + ' noite' + (nights>1?'s':'') + ').';
+  } else {
+    msgEl.className = 'dates-msg ok';
+    msgEl.textContent = nights + ' noite' + (nights>1?'s':'') + ', de ' + formatDateBR(checkin) + ' a ' + formatDateBR(checkout) + '.';
+  }
+
+  // Adicionais com preço definido
+  const addons = (data.addons || []).filter(a => selectedAddonIds.includes(a.id));
+  const addonsComPreco = addons.filter(a => a.price > 0);
+  const addonsSobConsulta = addons.filter(a => !a.price);
+  const addonsTotal = addonsComPreco.reduce((s,a)=> s + a.price, 0);
+  const grandTotal = nightsTotal + addonsTotal;
+
+  totalCard.style.display = '';
+  let html = `<div class="total-row"><span>Hospedagem (${nights} noite${nights>1?'s':''})</span><span>${formatMoney(nightsTotal)}</span></div>`;
+  addonsComPreco.forEach(a=>{
+    html += `<div class="total-row"><span>${a.label}</span><span>${formatMoney(a.price)}</span></div>`;
+  });
+  if (nightsTotal > 0){
+    html += `<div class="total-row grand"><span>Total estimado</span><b>${formatMoney(grandTotal)}</b></div>`;
+    if (addonsSobConsulta.length > 0){
+      html += `<div class="total-note">Valor não inclui: ${addonsSobConsulta.map(a=>a.label).join(', ')} — combinamos o preço pelo WhatsApp.</div>`;
+    }
+  } else {
+    html += `<div class="total-note" style="margin-top:14px;">Ainda estamos definindo os valores desta cabana — combinamos direitinho pelo WhatsApp assim que você enviar o pedido.</div>`;
+  }
+  document.getElementById('totalBreakdown').innerHTML = html;
+
+  const nameOk = document.getElementById('guestNameInput').value.trim().length > 0;
+  const contactOk = document.getElementById('guestContactInput').value.trim().length >= 10;
+  submitBtn.disabled = !(nameOk && contactOk);
+  submitBtn.textContent = (nameOk && contactOk) ? 'Solicitar Reserva pelo WhatsApp' : 'Preencha seus dados para continuar';
+
+  return { checkin, checkout, nights, nightsTotal, addons, addonsComPreco, addonsSobConsulta, addonsTotal, grandTotal };
+}
+
+function renderTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+  CABINS.forEach(c=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (c.id===activeCabin ? ' active' : '');
+    btn.textContent = c.name;
+    btn.onclick = ()=>{ activeCabin = c.id; renderTabs(); recalculate(); };
+    tabs.appendChild(btn);
+  });
+}
+
+document.getElementById('checkinInput').addEventListener('change', ()=>{
+  const ci = document.getElementById('checkinInput').value;
+  const coInput = document.getElementById('checkoutInput');
+  if (ci && (!coInput.value || coInput.value <= ci)){
+    coInput.value = addDaysToStr(ci, 1);
+  }
+  if (ci) coInput.min = addDaysToStr(ci, 1);
+  recalculate();
+});
+document.getElementById('checkoutInput').addEventListener('change', recalculate);
+document.getElementById('guestNameInput').addEventListener('input', recalculate);
+document.getElementById('guestContactInput').addEventListener('input', recalculate);
+
+document.getElementById('submitBtn').addEventListener('click', ()=>{
+  const calc = recalculate();
+  if (!calc || document.getElementById('submitBtn').disabled) return;
+
+  const cabinName = CABINS.find(c=>c.id===activeCabin).name;
+  const guestName = document.getElementById('guestNameInput').value.trim();
+  const guestContact = document.getElementById('guestContactInput').value.trim();
+
+  let msg = `Olá! Gostaria de solicitar uma reserva:\n\n`;
+  msg += `🏠 Cabana: ${cabinName}\n`;
+  msg += `📅 Check-in: ${formatDateBR(calc.checkin)}\n`;
+  msg += `📅 Check-out: ${formatDateBR(calc.checkout)}\n`;
+  msg += `🌙 ${calc.nights} noite${calc.nights>1?'s':''}\n\n`;
+
+  if (calc.addons.length > 0){
+    msg += `Adicionais: ${calc.addons.map(a=>a.label).join(', ')}\n\n`;
+  }
+
+  if (calc.nightsTotal > 0){
+    msg += `💰 Total estimado: ${formatMoney(calc.grandTotal)}\n`;
+    if (calc.addonsSobConsulta.length > 0){
+      msg += `(sem contar ${calc.addonsSobConsulta.map(a=>a.label).join(', ')}, a combinar)\n`;
+    }
+    msg += `\n`;
+  }
+
+  msg += `Nome: ${guestName}\n`;
+  msg += `Contato: ${guestContact}\n\n`;
+  msg += `Podem confirmar a disponibilidade e fechar a reserva comigo?`;
+
+  window.open(waLink(msg), '_blank');
+});
+
+async function loadData(){
+  try{
+    const res = await fetch('disponibilidade.json', {cache:'no-store'});
+    if (!res.ok) throw new Error('not found');
+    data = await res.json();
+  }catch(e){
+    data = { generatedAt: null, addons: [], cabins: {
+      vale:{name:'Cabana Vale', weekdayPrice:0, weekendPrice:0, specialPeriods:[], days:{}},
+      nuvem:{name:'Cabana Nuvem', weekdayPrice:0, weekendPrice:0, specialPeriods:[], days:{}},
+      ceu:{name:'Cabana Céu', weekdayPrice:0, weekendPrice:0, specialPeriods:[], days:{}},
+    }};
+  }
+  if (!data.addons) data.addons = [];
+
+  document.getElementById('loadingMsg').style.display = 'none';
+  document.getElementById('content').style.display = '';
+
+  if (data.generatedAt){
+    const d = new Date(data.generatedAt);
+    document.getElementById('footNote').textContent =
+      'Disponibilidade e valores atualizados em ' + d.toLocaleDateString('pt-BR') + '. Confirmamos tudo com você antes de fechar a reserva.';
+  } else {
+    document.getElementById('footNote').textContent =
+      'Confirmamos disponibilidade e valores com você antes de fechar a reserva.';
+  }
+}
+
+async function init(){
+  const params = new URLSearchParams(window.location.search);
+  const cabinParam = params.get('cabana');
+  if (cabinParam && CABINS.some(c=>c.id===cabinParam)) activeCabin = cabinParam;
+
+  document.getElementById('checkinInput').min = todayStr;
+  document.getElementById('checkoutInput').min = addDaysToStr(todayStr, 1);
+
+  await loadData();
+  renderTabs();
+  loadAddons();
+  recalculate();
+}
+init();
+</script>
+</body>
+</html>
