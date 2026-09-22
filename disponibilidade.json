@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-09-22T11:04:05.048Z",
+  "generatedAt": "2026-09-22T17:46:51.556Z",
   "cabins": {
     "vale": {
       "name": "Cabana Vale",
       "weekdayPrice": 800,
-      "weekendPrice": 1800,
+      "weekendPrice": 1000,
       "specialPeriods": [],
       "days": {}
     },
     "nuvem": {
       "name": "Cabana Nuvem",
       "weekdayPrice": 900,
-      "weekendPrice": 2000,
+      "weekendPrice": 1100,
       "specialPeriods": [],
       "days": {}
     },
     "ceu": {
       "name": "Cabana Céu",
       "weekdayPrice": 1000,
-      "weekendPrice": 2200,
+      "weekendPrice": 1200,
       "specialPeriods": [],
       "days": {}
     }
