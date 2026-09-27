@@ -359,14 +359,14 @@ gtag('event', 'conversion', {'send_to': 'AW-18399673352/-KqUCMqUh4gdEIj40sVE'});
     noteEl.style.display = 'none';
   }
 }
-document.getElementById('mainWaBtn').addEventListener('click', function(){
+document.getElementById('simularBtn').addEventListener('click', function(){
   gtag('event', 'conversion', {'send_to': 'AW-18399673352/-KqUCMqUh4gdEIj40sVE'});
 });
   
 function renderMainCta(){
   const cabinName = CABINS.find(c=>c.id===activeCabin).name;
   const msg = `Olá! Estou vendo a disponibilidade da ${cabinName} e gostaria de mais informações.`;
-  document.getElementById('mainWaBtn').href = waLink(msg);
+  document.getElementById('simularBtn').href = waLink(msg);
 }
 
 function renderAll(){
