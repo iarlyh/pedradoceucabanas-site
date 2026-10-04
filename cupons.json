@@ -1,0 +1,93 @@
+{
+  "_leia-me": "Configuração dos cupons. 'percentual' vale para todos. 'promocaoMensal' libera o desconto automático nos dias indicados de cada mês (data do pedido, horário de Recife). 'cupons' guarda só o código embaralhado (hash): gere cada linha em gerar-cupom.html. 'periodosExcluidos' são as NOITES sem desconto (datas inclusivas, AAAA-MM-DD). Mantenha o arquivo em UTF-8.",
+  "percentual": 10,
+  "promocaoMensal": {
+    "ativa": true,
+    "diaInicio": 1,
+    "diaFim": 7,
+    "titulo": "Promoção da primeira semana do mês"
+  },
+  "cupons": [],
+  "periodosExcluidos": [
+    {
+      "de": "2026-12-24",
+      "ate": "2026-12-26",
+      "motivo": "Natal"
+    },
+    {
+      "de": "2026-12-30",
+      "ate": "2027-01-02",
+      "motivo": "Réveillon"
+    },
+    {
+      "de": "2027-02-05",
+      "ate": "2027-02-09",
+      "motivo": "Carnaval"
+    },
+    {
+      "de": "2027-03-25",
+      "ate": "2027-03-28",
+      "motivo": "Semana Santa"
+    },
+    {
+      "de": "2027-04-20",
+      "ate": "2027-04-21",
+      "motivo": "Tiradentes"
+    },
+    {
+      "de": "2027-04-30",
+      "ate": "2027-05-01",
+      "motivo": "Dia do Trabalho"
+    },
+    {
+      "de": "2027-05-26",
+      "ate": "2027-05-29",
+      "motivo": "Corpus Christi"
+    },
+    {
+      "de": "2027-06-11",
+      "ate": "2027-06-12",
+      "motivo": "Dia dos Namorados"
+    },
+    {
+      "de": "2027-06-22",
+      "ate": "2027-06-24",
+      "motivo": "São João"
+    },
+    {
+      "de": "2027-09-04",
+      "ate": "2027-09-07",
+      "motivo": "Independência"
+    },
+    {
+      "de": "2027-10-09",
+      "ate": "2027-10-12",
+      "motivo": "Nossa Senhora Aparecida"
+    },
+    {
+      "de": "2027-10-30",
+      "ate": "2027-11-02",
+      "motivo": "Finados"
+    },
+    {
+      "de": "2027-11-13",
+      "ate": "2027-11-15",
+      "motivo": "Proclamação da República"
+    },
+    {
+      "de": "2027-11-19",
+      "ate": "2027-11-20",
+      "motivo": "Consciência Negra"
+    },
+    {
+      "de": "2027-12-23",
+      "ate": "2027-12-26",
+      "motivo": "Natal"
+    },
+    {
+      "de": "2027-12-30",
+      "ate": "2028-01-02",
+      "motivo": "Réveillon"
+    }
+  ]
+}

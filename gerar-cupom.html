@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gerar cupom de parceiro — Pedra do Céu Cabanas</title>
+<style>
+  :root { --preto:#1A1A18; --ouro:#C49A50; --ouro-escuro:#9A7338; --bege:#F5F0E8; --areia:#E8DFD0; --offwhite:#FDFAF5; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--offwhite); color:var(--preto); font-family: Georgia, 'Times New Roman', serif; line-height:1.5; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 28px 18px 60px; }
+  h1 { font-weight:500; font-size:1.7em; margin:0 0 4px; }
+  p.sub { margin:0 0 22px; color:var(--ouro-escuro); }
+  label { display:block; margin:16px 0 6px; font-size:.95em; }
+  input { width:100%; padding:12px; border:1px solid var(--areia); border-radius:4px; font:inherit; background:#fff; }
+  .linha { display:flex; gap:10px; }
+  .linha > div { flex:1; }
+  button { background:var(--preto); color:var(--offwhite); border:0; border-radius:4px; padding:12px 18px; font:inherit; cursor:pointer; }
+  button:hover { background:var(--ouro-escuro); }
+  button.claro { background:var(--areia); color:var(--preto); }
+  .saida { margin-top:24px; padding:16px; background:var(--bege); border:1px solid var(--ouro); border-radius:6px; display:none; }
+  pre { margin:10px 0; padding:12px; background:#fff; border:1px solid var(--areia); border-radius:4px; white-space:pre-wrap; word-break:break-all; font:13px/1.5 Consolas, monospace; }
+  .aviso { font-size:.85em; opacity:.8; margin-top:6px; }
+  ol { padding-left:20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Novo cupom de parceiro</h1>
+  <p class="sub">Desconto fixo de 10% nas diárias. Esta página não grava nada: ela só prepara a linha para o arquivo cupons.json.</p>
+
+  <label for="parceiro">Nome do parceiro (aparece para o hóspede e na mensagem do WhatsApp)</label>
+  <input id="parceiro" placeholder="Ex.: Maria Silva Viagens">
+
+  <label for="codigo">Código do cupom</label>
+  <div class="linha">
+    <div><input id="codigo" placeholder="Ex.: MARIA-7K4Q9" autocapitalize="characters" autocomplete="off"></div>
+    <button type="button" class="claro" id="sortear">Sugerir um código</button>
+  </div>
+  <div class="aviso">Prefira códigos difíceis de adivinhar (letras e números misturados). Maiúsculas, minúsculas, espaços e hífens não fazem diferença para o hóspede.</div>
+
+  <div class="linha">
+    <div><label for="de">Vale a partir de (opcional)</label><input id="de" type="date"></div>
+    <div><label for="ate">Vale até (opcional)</label><input id="ate" type="date"></div>
+  </div>
+
+  <p><button type="button" id="gerar">Gerar linha do cupom</button></p>
+
+  <div class="saida" id="saida">
+    <b>Pronto. Código para entregar ao parceiro:</b>
+    <pre id="codigoFinal"></pre>
+    <b>Linha para colar no cupons.json, dentro de "cupons": [ … ]:</b>
+    <pre id="linha"></pre>
+    <button type="button" id="copiar">Copiar a linha</button>
+    <ol>
+      <li>Abra o arquivo <b>cupons.json</b> no GitHub e clique no lápis (editar).</li>
+      <li>Cole a linha dentro dos colchetes de <b>"cupons"</b>. Se já houver outro cupom, coloque uma <b>vírgula</b> entre os dois.</li>
+      <li>Clique em <b>Commit changes</b>. Em cerca de um minuto o cupom já vale no site.</li>
+    </ol>
+    <div class="aviso">Para desativar um parceiro depois, troque <b>"ativo": true</b> por <b>"ativo": false</b> na linha dele.</div>
+  </div>
+</div>
+
+<script>
+  var SAL = 'pdc-cupom-v1:';
+  function normaliza(c) { return String(c || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
+  function sha256(txt) {
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+    });
+  }
+  function $(id) { return document.getElementById(id); }
+
+  $('sortear').addEventListener('click', function () {
+    var alfabeto = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // sem O, I, 0, 1 para não confundir
+    var bytes = new Uint8Array(6); crypto.getRandomValues(bytes);
+    var sufixo = Array.prototype.map.call(bytes, function (b) { return alfabeto[b % alfabeto.length]; }).join('');
+    var base = normaliza($('parceiro').value).slice(0, 8) || 'PDC';
+    $('codigo').value = base + '-' + sufixo;
+  });
+
+  $('gerar').addEventListener('click', function () {
+    var parceiro = $('parceiro').value.trim();
+    var codigo = normaliza($('codigo').value);
+    if (!parceiro) { alert('Escreva o nome do parceiro.'); return; }
+    if (codigo.length < 6) { alert('Use um código com pelo menos 6 letras ou números.'); return; }
+    sha256(SAL + codigo).then(function (hash) {
+      var o = { hash: hash, parceiro: parceiro, ativo: true };
+      if ($('de').value) o.validoDe = $('de').value;
+      if ($('ate').value) o.validoAte = $('ate').value;
+      $('codigoFinal').textContent = $('codigo').value.trim().toUpperCase();
+      $('linha').textContent = JSON.stringify(o, null, 2);
+      $('saida').style.display = 'block';
+    });
+  });
+
+  $('copiar').addEventListener('click', function () {
+    var t = $('linha').textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () {
+      $('copiar').textContent = 'Copiado!';
+    }, function () {
+      var r = document.createRange(); r.selectNodeContents($('linha')); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      $('copiar').textContent = 'Selecionado: use Ctrl+C';
+    });
+  });
+</script>
+</body>
+</html>
