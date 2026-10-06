@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-10-04T22:27:51.968Z",
+  "generatedAt": "2026-10-06T17:51:28.062Z",
   "cabins": {
     "vale": {
       "name": "Cabana Vale",
       "weekdayPrice": 900,
-      "weekendPrice": 1000,
+      "weekendPrice": 1100,
       "specialPeriods": [
         {
           "name": "Natal",
           "from": "2026-12-24",
           "to": "2026-12-27",
-          "price": 2000,
-          "minNights": 2
+          "price": 1300,
+          "minNights": 3
         },
         {
           "name": "Réveillon",
           "from": "2026-12-31",
           "to": "2027-01-01",
           "price": 2500,
-          "minNights": 2
+          "minNights": 3
         }
       ],
       "days": {
@@ -252,21 +252,21 @@
     "nuvem": {
       "name": "Cabana Nuvem",
       "weekdayPrice": 1000,
-      "weekendPrice": 1150,
+      "weekendPrice": 1200,
       "specialPeriods": [
         {
           "name": "Natal",
           "from": "2026-12-24",
-          "to": "2026-12-26",
-          "price": 2500,
-          "minNights": 2
+          "to": "2026-12-27",
+          "price": 1500,
+          "minNights": 3
         },
         {
           "name": "Réveillon",
           "from": "2026-12-31",
-          "to": "2027-01-02",
-          "price": 3000,
-          "minNights": 2
+          "to": "2027-01-03",
+          "price": 1500,
+          "minNights": 3
         }
       ],
       "days": {
@@ -499,22 +499,22 @@
     },
     "ceu": {
       "name": "Cabana Céu",
-      "weekdayPrice": 1200,
-      "weekendPrice": 1250,
+      "weekdayPrice": 1100,
+      "weekendPrice": 1300,
       "specialPeriods": [
         {
           "name": "Natal",
           "from": "2026-12-24",
-          "to": "2026-12-26",
-          "price": 3000,
-          "minNights": 2
+          "to": "2026-12-27",
+          "price": 1800,
+          "minNights": 3
         },
         {
           "name": "Réveillon",
           "from": "2026-12-31",
-          "to": "2027-01-02",
-          "price": 3500,
-          "minNights": 2
+          "to": "2027-01-03",
+          "price": 1800,
+          "minNights": 3
         }
       ],
       "days": {
