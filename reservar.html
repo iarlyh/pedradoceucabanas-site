@@ -234,14 +234,33 @@ function waLink(message){
   return WHATSAPP_LINK + '?text=' + encodeURIComponent(message);
 }
 
-// Sexta e sábado são sempre vendidos juntos, como pacote de 2 noites — se o
-// período informado cobrir só uma das duas, estende automaticamente para
-// incluir a outra (mesma regra usada no calendário de reservas).
+// Regra de fim de semana: o sábado é reservado sempre com a sexta ou com o domingo
+// (mínimo de 2 noites). A sexta só é vendida isoladamente quando o sábado já está
+// indisponível. O domingo pode ser avulso. Estende o período automaticamente.
 function pairFridaySaturday(checkin, checkout){
-  let ci = checkin, co = checkout;
-  if (parseDateStr(ci).getDay() === 6){ ci = addDaysToStr(ci, -1); }
-  if (parseDateStr(addDaysToStr(co, -1)).getDay() === 5){ co = addDaysToStr(co, 1); }
-  return { checkin: ci, checkout: co };
+  let ci = checkin, co = checkout, error = null;
+  const inRange = d => d >= ci && d < co;
+  const dow = d => parseDateStr(d).getDay();
+  for (let guard = 0; guard < 4; guard++){
+    let changed = false;
+    for (let d = ci; d < co; d = addDaysToStr(d, 1)){
+      if (dow(d) === 6){
+        const fri = addDaysToStr(d, -1), sun = addDaysToStr(d, 1);
+        if (!inRange(fri) && !inRange(sun)){
+          if (!isDateUnavailable(activeCabin, fri)){ ci = fri; changed = true; }
+          else if (!isDateUnavailable(activeCabin, sun)){ co = addDaysToStr(sun, 1); changed = true; }
+          else { error = 'sabado'; }
+        }
+      }
+      if (dow(d) === 5){
+        const sat = addDaysToStr(d, 1);
+        if (!inRange(sat) && !isDateUnavailable(activeCabin, sat)){ co = addDaysToStr(sat, 1); changed = true; }
+      }
+      if (changed) break;
+    }
+    if (!changed) break;
+  }
+  return { checkin: ci, checkout: co, error };
 }
 
 function getPriceForDate(cabinId, dateStr){
@@ -301,8 +320,17 @@ function recalculate(){
     return null;
   }
 
-  let { checkin, checkout } = pairFridaySaturday(checkinRaw, checkoutRaw);
+  let { checkin, checkout, error: weekendError } = pairFridaySaturday(checkinRaw, checkoutRaw);
   const extended = (checkin !== checkinRaw || checkout !== checkoutRaw);
+
+  if (weekendError){
+    msgEl.className = 'dates-msg warn';
+    msgEl.textContent = 'O sábado só pode ser reservado junto com a sexta ou com o domingo, e essas datas não estão disponíveis nesta cabana. Tente outro período.';
+    totalCard.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Escolha datas disponíveis';
+    return null;
+  }
 
   if (checkout <= checkin){
     msgEl.className = 'dates-msg warn';
@@ -337,7 +365,7 @@ function recalculate(){
 
   if (extended){
     msgEl.className = 'dates-msg ok';
-    msgEl.textContent = 'Sextas e sábados são reservados sempre em conjunto — ajustamos automaticamente o período para ' +
+    msgEl.textContent = 'O sábado é reservado sempre com a sexta ou com o domingo (mínimo de 2 noites) — ajustamos automaticamente o período para ' +
       formatDateBR(checkin) + ' a ' + formatDateBR(checkout) + ' (' + nights + ' noite' + (nights>1?'s':'') + ').';
   } else {
     msgEl.className = 'dates-msg ok';
