@@ -201,7 +201,7 @@ footer.foot {
         <div class="item"><span style="font-size:9px;font-weight:600;color:var(--ouro-escuro);border:1px solid var(--ouro-escuro);border-radius:4px;padding:0 3px;">mín. 2</span> Estadia mínima em noites</div>
       </div>
 
-      <p style="font-size:12px;line-height:1.5;margin-top:12px;opacity:.85;">Fins de semana: estadia mínima de 2 noites (sexta e sábado, ou sábado e domingo). A noite de domingo também pode ser acrescentada a quem ficar sexta e sábado, a critério do hóspede, com a tarifa de domingo a quinta. Datas especiais seguem regra própria.</p>
+      <p style="font-size:12px;line-height:1.5;margin-top:12px;opacity:.85;">Fins de semana: o sábado é reservado sempre com a sexta ou com o domingo (mínimo de 2 noites). A sexta só é vendida isoladamente quando o sábado já está reservado. O domingo pode ser reservado avulso ou acrescentado a quem ficar sexta e sábado, com a tarifa de domingo a quinta. Datas especiais seguem regra própria.</p>
 
       <div class="special-note" id="specialNote" style="display:none;"></div>
     </div>
@@ -316,7 +316,12 @@ function renderCalendar(){
     const dateObj = new Date(viewYear, viewMonth, day);
     const dateStr = fmtDate(dateObj);
     const entry = (cabinData.days || {})[dateStr];
-    const isUnavailable = entry && (entry.status === 'reservado' || entry.status === 'bloqueado');
+    const dayUn = d => { const e = (cabinData.days || {})[d]; return !!(e && (e.status === 'reservado' || e.status === 'bloqueado')); };
+    const prevStr = fmtDate(new Date(viewYear, viewMonth, day-1)), nextStr = fmtDate(new Date(viewYear, viewMonth, day+1));
+    const dow = dateObj.getDay();
+    let isUnavailable = dayUn(dateStr);
+    // Sábado só é vendido com a sexta ou com o domingo: se ambos estão indisponíveis, o sábado não pode ser reservado.
+    if (!isUnavailable && dow === 6 && !findSpecialPeriod(activeCabin, dateStr) && dayUn(prevStr) && dayUn(nextStr)) isUnavailable = true;
     const isPast = dateStr < todayStr;
 
     const weekend = isWeekendDay(dateObj);
@@ -325,7 +330,7 @@ function renderCalendar(){
     const defaultPrice = special ? special.price : (weekend ? cabinData.weekendPrice : cabinData.weekdayPrice);
     const price = (entry && entry.price != null) ? entry.price : defaultPrice;
 
-    const minN = special ? (special.minNights || 1) : (weekend ? 2 : 1);
+    const minN = special ? (special.minNights || 1) : (dow === 6 ? 2 : (dow === 5 ? (dayUn(nextStr) ? 1 : 2) : 1));
     const cell = document.createElement('div');
     let cls = 'day ' + (isUnavailable ? 'indisponivel' : 'disponivel');
     if (dateStr === todayStr) cls += ' today';
