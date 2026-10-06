@@ -46,7 +46,7 @@
       msg.className = 'dates-msg ok';
       msg.textContent = '';
       msg.appendChild(document.createTextNode(
-        'As reservas abrem em ' + ABERTURA_BR + '. As datas que você escolheu são anteriores à abertura. ' +
+        'As primeiras estadias começam em ' + ABERTURA_BR + '. As datas que você escolheu são anteriores à inauguração. ' +
         'Escolha o check-in a partir de ' + ABERTURA_BR + ' ou '
       ));
       var a = document.createElement('a');
@@ -56,9 +56,9 @@
       a.rel = 'noopener';
       a.style.textDecoration = 'underline';
       msg.appendChild(a);
-      msg.appendChild(document.createTextNode(' para ser avisado em primeira mão.'));
+      msg.appendChild(document.createTextNode(' para ser avisado em primeira mão sobre novas datas.'));
       var botao = document.getElementById('submitBtn');
-      if (botao) botao.textContent = 'Reservas abrem em ' + ABERTURA_BR;
+      if (botao) botao.textContent = 'Estadias a partir de ' + ABERTURA_BR;
     } finally {
       if (observador) observador.observe(msg, { childList: true, characterData: true, subtree: true });
     }
