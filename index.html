@@ -1602,7 +1602,10 @@
       <h3>Conheça nossas cabanas</h3>
       <p class="sub">Vale, Nuvem e Céu — por dentro e por fora.</p>
       <div class="photo-grid">
-        <img src="foto-cabanas-fachada-noturna.jpeg" alt="Fachada noturna da Pedra do Céu Cabanas, com as três cabanas A-frame iluminadas e a placa de entrada" style="border-radius:10px; aspect-ratio:4/5; object-fit:cover; width:100%; display:block;">
+        <figure style="position:relative; margin:0;">
+          <img src="foto-cabanas-fachada-noturna.jpeg" alt="Imagem ilustrativa do projeto: fachada noturna da Pedra do Céu Cabanas, com as três cabanas A-frame iluminadas e a placa de entrada" style="border-radius:10px; aspect-ratio:4/5; object-fit:cover; width:100%; display:block;">
+          <figcaption style="position:absolute; left:0.7rem; bottom:0.7rem; background:rgba(26,26,26,0.72); color:#E8DFD0; font-size:0.72rem; letter-spacing:0.04em; padding:0.3rem 0.65rem; border-radius:999px;">Imagem ilustrativa do projeto</figcaption>
+        </figure>
         <img src="foto-obra-cabana-sobre-rocha.jpeg" alt="Cabana A-frame em obra, elevada sobre a formação rochosa de Serra Negra (outubro de 2026)" loading="lazy" style="border-radius:10px; aspect-ratio:4/5; object-fit:cover; width:100%; display:block;">
         <img src="foto-obra-cabanas-tomando-forma.jpeg" alt="Duas cabanas A-frame tomando forma sobre a rocha, em obra (outubro de 2026)" loading="lazy" style="border-radius:10px; aspect-ratio:4/5; object-fit:cover; width:100%; display:block;">
         <img src="foto-obra-interior-vista-vale.jpeg" alt="Interior de uma cabana em obra, com a estrutura em A emoldurando a vista do vale e do açude (outubro de 2026)" loading="lazy" style="border-radius:10px; aspect-ratio:4/5; object-fit:cover; width:100%; display:block;">
@@ -1639,7 +1642,8 @@
   Para adicionar um depoimento real: troque o texto em itálico pela fala do hóspede
   e o texto em ".autor" pelo nome (ex: "Marina e Pedro, out/2027").
 -->
-<section class="memorias">
+<!-- OCULTA ate haver depoimentos reais: para reexibir, remova os atributos hidden e style abaixo. -->
+<section class="memorias" hidden style="display:none;">
   <div class="wrap">
     <div class="section-head" data-reveal>
       <p class="eyebrow" style="color:var(--ouro);">Memórias</p>
