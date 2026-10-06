@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T18:05:35.483Z",
+  "generatedAt": "2026-10-06T19:25:26.918Z",
   "cabins": {
     "vale": {
       "name": "Cabana Vale",
@@ -19,6 +19,34 @@
           "to": "2027-01-03",
           "price": 1300,
           "minNights": 3
+        },
+        {
+          "name": "Carnaval",
+          "from": "2027-02-06",
+          "to": "2027-02-09",
+          "price": 1300,
+          "minNights": 3
+        },
+        {
+          "name": "Semana Santa",
+          "from": "2027-03-25",
+          "to": "2027-03-28",
+          "price": 1300,
+          "minNights": 3
+        },
+        {
+          "name": "Dia dos Namorados",
+          "from": "2027-06-11",
+          "to": "2027-06-13",
+          "price": 1500,
+          "minNights": 2
+        },
+        {
+          "name": "São João",
+          "from": "2027-06-23",
+          "to": "2027-06-27",
+          "price": 1300,
+          "minNights": 4
         }
       ],
       "days": {
@@ -267,6 +295,34 @@
           "to": "2027-01-03",
           "price": 1500,
           "minNights": 3
+        },
+        {
+          "name": "Carnaval",
+          "from": "2027-02-06",
+          "to": "2027-02-09",
+          "price": 1500,
+          "minNights": 3
+        },
+        {
+          "name": "Semana Santa",
+          "from": "2027-03-25",
+          "to": "2027-03-28",
+          "price": 1500,
+          "minNights": 3
+        },
+        {
+          "name": "Dia dos Namorados",
+          "from": "2027-06-11",
+          "to": "2027-06-13",
+          "price": 1700,
+          "minNights": 2
+        },
+        {
+          "name": "São João",
+          "from": "2027-06-23",
+          "to": "2027-06-27",
+          "price": 1500,
+          "minNights": 4
         }
       ],
       "days": {
@@ -515,6 +571,34 @@
           "to": "2027-01-03",
           "price": 1800,
           "minNights": 3
+        },
+        {
+          "name": "Carnaval",
+          "from": "2027-02-06",
+          "to": "2027-02-09",
+          "price": 1800,
+          "minNights": 3
+        },
+        {
+          "name": "Semana Santa",
+          "from": "2027-03-25",
+          "to": "2027-03-28",
+          "price": 1800,
+          "minNights": 3
+        },
+        {
+          "name": "Dia dos Namorados",
+          "from": "2027-06-11",
+          "to": "2027-06-13",
+          "price": 2000,
+          "minNights": 2
+        },
+        {
+          "name": "São João",
+          "from": "2027-06-23",
+          "to": "2027-06-27",
+          "price": 1800,
+          "minNights": 4
         }
       ],
       "days": {
