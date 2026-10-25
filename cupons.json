@@ -2,7 +2,7 @@
   "_leia-me": "Configuração dos cupons. 'percentual' vale para todos. 'promocaoMensal' libera o desconto automático nos dias indicados de cada mês (data do pedido, horário de Recife). 'cupons' guarda só o código embaralhado (hash): gere cada linha em gerar-cupom.html. 'periodosExcluidos' são as NOITES sem desconto (datas inclusivas, AAAA-MM-DD). Mantenha o arquivo em UTF-8.",
   "percentual": 10,
   "promocaoMensal": {
-    "ativa": true,
+    "ativa": false,
     "diaInicio": 1,
     "diaFim": 7,
     "titulo": "Promoção da primeira semana do mês"
