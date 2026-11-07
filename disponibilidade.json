@@ -15,13 +15,6 @@
       "weekendPrice": 1100,
       "specialPeriods": [
         {
-          "name": "Natal",
-          "from": "2026-12-24",
-          "to": "2026-12-27",
-          "price": 1300,
-          "minNights": 3
-        },
-        {
           "name": "Réveillon",
           "from": "2026-12-31",
           "to": "2027-01-03",
@@ -321,13 +314,6 @@
       "weekendPrice": 1200,
       "specialPeriods": [
         {
-          "name": "Natal",
-          "from": "2026-12-24",
-          "to": "2026-12-27",
-          "price": 1500,
-          "minNights": 3
-        },
-        {
           "name": "Réveillon",
           "from": "2026-12-31",
           "to": "2027-01-03",
@@ -626,13 +612,6 @@
       "weekdayPrice": 1100,
       "weekendPrice": 1300,
       "specialPeriods": [
-        {
-          "name": "Natal",
-          "from": "2026-12-24",
-          "to": "2026-12-27",
-          "price": 1800,
-          "minNights": 3
-        },
         {
           "name": "Réveillon",
           "from": "2026-12-31",
