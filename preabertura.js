@@ -14,8 +14,8 @@
   if (window.__preaberturaIniciada) return;
   window.__preaberturaIniciada = true;
 
-  var ABERTURA = '2026-12-18';     // primeira noite com reservas abertas (AAAA-MM-DD)
-  var ABERTURA_BR = '18/12/2026';  // a mesma data, como aparece para o hóspede
+  var ABERTURA = '2026-12-28';     // primeira noite com reservas abertas (AAAA-MM-DD)
+  var ABERTURA_BR = '28/12/2026';  // a mesma data, como aparece para o hóspede
   var observador = null;
 
   function paraISO(br) {
