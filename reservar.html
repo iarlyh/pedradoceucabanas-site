@@ -138,7 +138,16 @@ footer.foot {
     <a class="back-link" href="index.html">← Voltar ao site</a>
   </header>
 
-  <p class="intro">Escolha a cabana, as datas e os adicionais que quiser — o valor estimado é calculado na hora. Ao final, você envia o pedido pelo WhatsApp e a gente confirma a disponibilidade e fecha os detalhes com você.</p>
+  <p class="intro">Escolha a cabana, as datas e os adicionais que quiser; o valor estimado é calculado na hora. Esta página não efetiva a reserva: você envia uma solicitação pelo WhatsApp e, depois do retorno da nossa equipe, com a confirmação da disponibilidade e as orientações para finalizar a reserva, ela é efetivada.</p>
+
+  <div class="como-funciona" style="background:var(--bege);border-left:3px solid var(--ouro);border-radius:6px;padding:14px 18px;margin-bottom:22px;font-size:14px;line-height:1.7;max-width:60ch;">
+    <strong style="font-weight:500;">Como funciona</strong>
+    <ol style="margin:8px 0 0;padding-left:20px;">
+      <li>Você envia sua solicitação pelo WhatsApp.</li>
+      <li>Nossa equipe retorna confirmando a disponibilidade e informando como finalizar a reserva, com a forma de pagamento.</li>
+      <li>A reserva só é efetivada depois desse retorno e da confirmação do sinal de pagamento.</li>
+    </ol>
+  </div>
 
   <div id="loadingMsg" class="loading">Carregando...</div>
 
@@ -182,7 +191,7 @@ footer.foot {
     </div>
 
     <button class="btn-cta" id="submitBtn" disabled>Escolha as datas para continuar</button>
-    <p class="fine-print">O valor mostrado aqui é uma simulação e pode ser ajustado na confirmação. Nada é cobrado neste momento — o pagamento é combinado diretamente com a gente pelo WhatsApp.</p>
+    <p class="fine-print">O valor mostrado é uma simulação e pode ser ajustado na confirmação. Nada é cobrado neste momento, e o envio da solicitação não garante a data: a reserva só é efetivada após o retorno da nossa equipe e a confirmação do pagamento do sinal.</p>
     <p class="fine-print">Ao enviar, você autoriza o uso do seu nome e WhatsApp para responder a esta solicitação, conforme nossa <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
   </div>
 
@@ -398,7 +407,7 @@ function recalculate(){
   const nameOk = document.getElementById('guestNameInput').value.trim().length > 0;
   const contactOk = document.getElementById('guestContactInput').value.trim().length >= 10;
   submitBtn.disabled = !(nameOk && contactOk);
-  submitBtn.textContent = (nameOk && contactOk) ? 'Solicitar Reserva pelo WhatsApp' : 'Preencha seus dados para continuar';
+  submitBtn.textContent = (nameOk && contactOk) ? 'Enviar solicitação de reserva pelo WhatsApp' : 'Preencha seus dados para continuar';
 
   return { checkin, checkout, nights, nightsTotal, addons, addonsComPreco, addonsSobConsulta, addonsTotal, grandTotal };
 }
@@ -456,7 +465,7 @@ document.getElementById('submitBtn').addEventListener('click', ()=>{
 
   msg += `Nome: ${guestName}\n`;
   msg += `Contato: ${guestContact}\n\n`;
-  msg += `Podem confirmar a disponibilidade e fechar a reserva comigo?`;
+  msg += `Podem confirmar a disponibilidade e me orientar sobre como finalizar a reserva?`;
 
 gtag('event', 'conversion', {'send_to': 'AW-18399673352/-KqUCMqUh4gdEIj40sVE'});
   window.open(waLink(msg), '_blank');
